@@ -1,0 +1,91 @@
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  
+</head>
+<body>
+ <div class="row"><div class="col-md-4"></div>
+ <div class="col-md-3">
+     <h1> Payment Gateway</h1>
+    </div></div>
+
+<div class="container" >
+    <div class="row">
+        <div class="col-md-12">
+            <form>
+                <fieldset>
+                    <div class="form-group">
+                        <label for="tdate"><span class="req">*</span> Date:</label>
+                        <input required type="date" [(ngModel)]="transaction.tdate" name="tdate" id="tdate"     class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="custid"><span class="req">* </span> Customer Account Number:</label>
+                        <input required type="text" [(ngModel)]="transaction.custid" name="custid" id="custid"
+                            class="form-control" maxlength="14" placeholder="" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-info" type="submit" name="fetch_data" value="Fetch-Info" (click)="getCustomer()">
+                    </div>
+
+					<div class="form-group">
+                        <label for="name"><span class="req">* </span> Customer Name:</label>
+                        <input required type="text" name="name" id="name" class="form-control" maxlength="50" value={{this.customer.accountholdername}} disabled/>
+                    </div>
+					<div class="form-group">
+                        <label for="balance"><span class="req">* </span> Current Balance:</label>
+                        <input required type="text" name="balance" id="balance" class="form-control" maxlength="50" value={{this.customer.clearbalance}} disabled />
+                    </div>
+					
+
+                    <div class="form-group">
+                        <label for="bic"><span class="req">* </span> BIC : </label>
+                        <input class="form-control" required type="text" [(ngModel)]="transaction.bic" name="bic"
+                            id="bic" placeholder="Enter Receiver Bank Code" />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="receivername"><span class="req">* </span> Receiver Name : </label>
+                        <input class="form-control" type="text" [(ngModel)]="transaction.receivername" name="receivername" id="receivername"
+                            placeholder="" required />
+                    </div>
+					<div class="form-group">
+                        <label for="recaccnumber"><span class="req">* </span> Receiver Account Number : </label>
+                        <input class="form-control" type="text" [(ngModel)]="transaction.recaccnumber" name="recaccnumber" id="recaccnumber"
+                            placeholder="" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="code"><span class="req">* </span> Message Code: </label>
+                        <select class=" form-control" id="code" name="code" [(ngModel)]="transaction.code">
+                            <option value="phon" selected>Please advise the account with institution by phone.</option>
+                            <option value="repa" >Payments has a related e-Payments reference.</option>
+                            <option value="sdva">Payment must be executed with in the same day.</option>
+                            <option value="chqb">Beneficiary customer must be paid by cheque only.</option>
+                            <option value="cort">Payment is made in settlement for a trade.</option>
+                            <option value="hold">Beneficiary customer or claimant will call upon identification.</option>
+                            <option value="intc">Payment between two companies that belongs to the same group.</option>
+                            <option value="phob">Please advise the intermediary institution by phone.</option>
+                            <option value="phoi">Please advise the intermediary by phone.</option>
+                            </select>
+                       
+                    </div>
+					<div class="form-group">
+                        <label for="amount"><span class="req">* </span> Enter Amount to send: </label>
+                        <input class="form-control" type="text" [(ngModel)]="transaction.amount" name="amount" id="amount"
+                            required />
+                    </div>
+					
+                    <div class="form-group">
+                      <input class="btn btn-info" type="submit" name="submit_reg" value="PerformTransaction" (click)="addTransaction()" >
+                    </div>
+                </fieldset>
+            </form><!-- ends register form -->
+            <!-- second for to fiter user-->
+        </div><!-- ends col-6 -->
+        
+    </div>
+</div>
+
+</body>
